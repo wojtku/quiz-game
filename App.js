@@ -1,10 +1,11 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-
+import { Audio } from 'expo';
 
 export default class App extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
+    this.audioPlayer = new Audio.Sound();
     this.state = {
       button1Disabled: false,
       button2Disabled: false,
@@ -21,6 +22,16 @@ export default class App extends React.Component {
     }
   }
 
+  playSound = async () => {
+    try {
+      await this.audioPlayer.unloadAsync()
+      await this.audioPlayer.loadAsync(require("./assets/buzz.mp3"));
+      await this.audioPlayer.playAsync();
+    } catch (err) {
+      console.warn("Couldn't Play audio", err)
+    }
+}
+
   render() {
     return (
       <View style={styles.container}>
@@ -28,6 +39,7 @@ export default class App extends React.Component {
           pointerEvents={this.state.button1Disabled ? "none": undefined}
           style={[styles.buttonContainer, this.state.button1Color]}
           onTouchStart={()=> {
+            this.playSound()
             this.setState({
               button1Color: {
                 backgroundColor: 'green'
@@ -48,6 +60,7 @@ export default class App extends React.Component {
         pointerEvents={this.state.button2Disabled ? "none": undefined}
         style={[styles.buttonContainer, this.state.button2Color]}
         onTouchStart={()=> {
+          this.playSound()
           this.setState({
             button2Color: {
               backgroundColor: 'green'
@@ -68,6 +81,7 @@ export default class App extends React.Component {
         pointerEvents={this.state.button3Disabled ? "none": undefined}
         style={[styles.buttonContainer, this.state.button3Color]}
         onTouchStart={()=> {
+          this.playSound()
           this.setState({
             button3Color: {
               backgroundColor: 'green'
