@@ -29,7 +29,7 @@ export default class App extends React.Component {
       await this.audioPlayer.loadAsync(require("./assets/buzz.mp3"));
       await this.audioPlayer.playAsync();
     } catch (err) {
-      console.warn("Couldn't Play audio", err);
+      //console.warn("Couldn't Play audio", err);
     }
   };
 
@@ -47,8 +47,8 @@ export default class App extends React.Component {
       button3Color: {
         backgroundColor: "white"
       }
-    })
-  }
+    });
+  };
 
   render() {
     return (
@@ -57,25 +57,30 @@ export default class App extends React.Component {
           pointerEvents={this.state.button1Disabled ? "none" : undefined}
           style={[styles.buttonContainer, this.state.button1Color]}
           onTouchStart={() => {
-            this.playSound();
-            this.setState({
-              button1Color: {
-                backgroundColor: "green"
+            this.setState(
+              {
+                button1Color: {
+                  backgroundColor: "green"
+                },
+                button2Color: {
+                  backgroundColor: "black"
+                },
+                button3Color: {
+                  backgroundColor: "black"
+                },
+                button1Disabled: true,
+                button2Disabled: true,
+                button3Disabled: true
               },
-              button2Color: {
-                backgroundColor: "black"
-              },
-              button3Color: {
-                backgroundColor: "black"
-              },
-              button2Disabled: true,
-              button3Disabled: true
-            });
-            setTimeout(
-              function() {
-                this.resetState();
-              }.bind(this),
-              3000
+              () => {
+                this.playSound();
+                setTimeout(
+                  function() {
+                    this.resetState();
+                  }.bind(this),
+                  2000
+                );
+              }
             );
           }}
         >
@@ -85,25 +90,30 @@ export default class App extends React.Component {
           pointerEvents={this.state.button2Disabled ? "none" : undefined}
           style={[styles.buttonContainer, this.state.button2Color]}
           onTouchStart={() => {
-            this.playSound();
-            this.setState({
-              button2Color: {
-                backgroundColor: "green"
+            this.setState(
+              {
+                button2Color: {
+                  backgroundColor: "green"
+                },
+                button1Color: {
+                  backgroundColor: "black"
+                },
+                button3Color: {
+                  backgroundColor: "black"
+                },
+                button1Disabled: true,
+                button2Disabled: true,
+                button3Disabled: true
               },
-              button1Color: {
-                backgroundColor: "black"
-              },
-              button3Color: {
-                backgroundColor: "black"
-              },
-              button3Disabled: true,
-              button1Disabled: true
-            });
-            setTimeout(
-              function() {
-                this.resetState();
-              }.bind(this),
-              3000
+              () => {
+                this.playSound();
+                setTimeout(
+                  function() {
+                    this.resetState();
+                  }.bind(this),
+                  2000
+                );
+              }
             );
           }}
         >
@@ -113,25 +123,30 @@ export default class App extends React.Component {
           pointerEvents={this.state.button3Disabled ? "none" : undefined}
           style={[styles.buttonContainer, this.state.button3Color]}
           onTouchStart={() => {
-            this.playSound();
-            this.setState({
-              button3Color: {
-                backgroundColor: "green"
+            this.setState(
+              {
+                button3Color: {
+                  backgroundColor: "green"
+                },
+                button1Color: {
+                  backgroundColor: "black"
+                },
+                button2Color: {
+                  backgroundColor: "black"
+                },
+                button1Disabled: true,
+                button2Disabled: true,
+                button3Disabled: true
               },
-              button1Color: {
-                backgroundColor: "black"
-              },
-              button2Color: {
-                backgroundColor: "black"
-              },
-              button1Disabled: true,
-              button2Disabled: true
-            });
-            setTimeout(
-              function() {
-                this.resetState();
-              }.bind(this),
-              3000
+              () => {
+                this.playSound();
+                setTimeout(
+                  function() {
+                    this.resetState();
+                  }.bind(this),
+                  2000
+                );
+              }
             );
           }}
         >
